@@ -12,12 +12,20 @@ app.use(express.json());
 
 const uri = process.env.ATLAS_URI; // get from mongodb dashboard
 
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }); // removed useCreateIndex
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true});  // pass in that mongodb via uri variable
 const connection = mongoose.connection;
 
-connection.once('open', () => {
+connection.once('open', () => { 
     console.log("MongoDB database connection established successfully");
 });
+
+
+const exercisesRouter = require('./routes/exercises');
+const userRouter = require('./routes/users');
+
+app.use('/exercises', exercisesRouter); //whenever someone goes to root url and puts this url, loads the exercisesRouter
+app.use('/users', userRouter);
+
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
