@@ -1,5 +1,6 @@
 To start:
-*requires .env file with ATLAS LINK FROM MONGODB
+
+*requires .env file with ATLAS LINK FROM MONGODB in backend
 cd mern-exercise-tracker\backend
 
 npm i
